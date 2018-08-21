@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         xRecyclerView.setLayoutManager(linearLayoutManager);
         View header = LayoutInflater.from(this).inflate(R.layout.header, null);
         xRecyclerView.addHeaderView(header);
-        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallBeat);
+        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallClipRotateMultiple);
         xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallBeat);
-//        xRecyclerView.setArrowImageView();
+        xRecyclerView.setArrowImageView(R.drawable.arrow);
         myAdapter = new MyAdapter(data);
         xRecyclerView.setAdapter(myAdapter);
 
