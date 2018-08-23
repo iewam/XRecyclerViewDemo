@@ -1,8 +1,10 @@
 package com.spark.xrecyclerviewdemo;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private XRecyclerView xRecyclerView;
     private List<Integer> data =  new ArrayList<Integer>();
     private MyAdapter myAdapter;
+
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 initData();
-                myAdapter.notifyDataSetChanged();
-                xRecyclerView.refreshComplete();
+
+                Log.e("Thread", Thread.currentThread().toString());
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e("Thread", Thread.currentThread().toString());
+
+                        myAdapter.notifyDataSetChanged();
+                        xRecyclerView.refreshComplete();
+                    }
+                }, 3000);
             }
 
             @Override
